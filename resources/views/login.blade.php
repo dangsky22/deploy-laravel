@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <title>Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="{{ asset('manifest.json') }}">
+    <meta name="theme-color" content="#6777ef">
+
     <style>
         body {
             margin: 0;
@@ -139,5 +144,17 @@
             </div>
         </div>
     </div>
+
+    <!-- Register Service Worker -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('{{ asset('sw.js') }}')
+            .then(function(reg) {
+                console.log('Service Worker registered:', reg);
+            }).catch(function(err) {
+                console.error('Service Worker registration failed:', err);
+            });
+        }
+    </script>
 </body>
 </html>
